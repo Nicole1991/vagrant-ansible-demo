@@ -1,0 +1,16 @@
+#!/usr/bin/env ansible-playbook
+- hosts: all
+  tasks:
+    - debug: var=ansible_distribution,ansible_env #ansible nginx -m setup -a 'filter=ansible_'
+
+- hosts: jenkins
+  become: yes
+  roles:
+    - common
+    - jenkins
+
+- hosts: nginx
+  become: yes
+  roles:
+    - common
+    - nginx
