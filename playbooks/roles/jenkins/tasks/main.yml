@@ -1,0 +1,24 @@
+- name: create folder
+  file:
+      path: /demo/jenkins
+      state: directory
+      owner: vagrant
+      group: vargant
+
+- name: copy docker compose file
+  copy:
+       src: docker-compose.yml
+       dest: /demo
+
+- name: copy nginx private key
+  copy:
+       src: nginx_private_key
+       dest: /demo/jenkins/nginx_private_key
+       owner: vagrant
+       group: vagrant
+       mode: 0700
+
+- name: run docker compose
+  command: sh -c 'docker-compose up -d --force-recreate'
+  args:
+       chdir: /demo
