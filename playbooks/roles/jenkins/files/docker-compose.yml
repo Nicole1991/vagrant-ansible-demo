@@ -1,0 +1,19 @@
+version: "2"
+services:
+  jenkins_master:
+    container_name: jenkins-master
+    image: jenkinsci/jenkins
+    restart: always
+    posts: - "8080:8080"
+           - "50000:50000"
+    volumns: demo/jenkins:/var/jenkins_home
+
+  jenkins_slave:
+    container_name: jenkins_slave
+    image: jaydp17/jenkins-slave
+    depends_on:
+      - jenkins_master
+    links:
+      - jenkins_master
+    volumes:
+    - /demo/jenkins:/var/jenkins_home
