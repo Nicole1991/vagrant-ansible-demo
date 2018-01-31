@@ -4,9 +4,9 @@ services:
     container_name: jenkins-master
     image: jenkinsci/jenkins
     restart: always
-    posts: - "8080:8080"
+    ports: - "8080:8080"
            - "50000:50000"
-    volumns: demo/jenkins:/var/jenkins_home
+    volumes: data/jenkins:/var/jenkins_home
 
   jenkins_slave:
     container_name: jenkins_slave
@@ -16,4 +16,4 @@ services:
     links:
       - jenkins_master
     volumes:
-    - /demo/jenkins:/var/jenkins_home
+    - /data/jenkins:/var/jenkins_home

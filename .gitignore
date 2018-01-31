@@ -1,2 +1,5 @@
 .idea
 .vagrant
+secrets.yml
+*.retry
+playbooks/roles/jenkins/files/nginx_private_key

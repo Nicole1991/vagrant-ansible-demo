@@ -1,19 +1,19 @@
 - name: create folder
   file:
-    path: /demo/nginx/html
+    path: /data/nginx/html
     state: directory
     owner: vagrant
     group: vagrant
 
 - name: copy nginx config file to host
   copy:
-    src: nginx.cfg
-    dest: /demo/nginx/nginx.cfg
+    src: default.conf
+    dest: /data/nginx/default.conf
 
 - name: copy default html file
   template:
     src: index.html
-    dest: /demo/nginx/html/index.html
+    dest: /data/nginx/html/index.html
     owner: vagrant
     group: vagrant
 
@@ -26,5 +26,5 @@
     ports:
       - "80:80"
     volumes:
-      - /demo/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - /demo/nginx/html:/usr/share/nginx/html
+      - /data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /data/nginx/html:/usr/share/nginx/html
