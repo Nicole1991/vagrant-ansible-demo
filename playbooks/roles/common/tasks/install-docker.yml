@@ -1,18 +1,18 @@
-- name: make sure docker repository key is installed
+- name: ensure repository key is installed
   apt_key:
-        id: "58118E89F3A912897C070ADBF76221572C52609D"
-        keyserver: "hkp://p80.pool.sks-keyservers.net:80"
-        state: present
+    id: "58118E89F3A912897C070ADBF76221572C52609D"
+    keyserver: "hkp://p80.pool.sks-keyservers.net:80"
+    state: present
 
-- name: make sure docker repository is avaliable
+- name: ensure docker registry is available
   apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main' state=present
 
-- name: make sure docker and dependencies are installed
+- name: ensure docker and dependencies are installed
   apt: name=docker-engine update_cache=yes
 
-- name: check if install docker compose
+- name: check if install docker-compose
   stat:
-      path: /usr/local/bin/docker-compose
+    path: /usr/local/bin/docker-compose
   register: composeInstalled
 
 - name: install docker-compose
